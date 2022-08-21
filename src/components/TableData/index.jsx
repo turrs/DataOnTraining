@@ -3,7 +3,13 @@ import './index.css';
 import PropTypes from 'prop-types';
 const TableData = ({ pagination, columns, dataTable }) => {
   return (
-    <Table dataSource={dataTable} data-testid="table" columns={columns} pagination={pagination} />
+    <Table
+      dataSource={dataTable}
+      rowKey={(dataTable) => dataTable.id}
+      data-testid="table"
+      columns={columns}
+      pagination={pagination}
+    />
   );
 };
 

@@ -12,7 +12,12 @@ const Dashboard = () => {
     MyTrainingTableColumnContext,
     DataMyTraining,
     GetDataSearching,
-    valueInputSearching
+    valueInputSearching,
+    GetDataSelectEventType,
+    GetDataSelectEventStatus,
+    eventType,
+    eventStatus,
+    deleteStatus
   } = useContext(AppContext);
   const userInfo = JSON.parse(localStorage.getItem('user-info'));
   useEffect(() => {
@@ -21,8 +26,14 @@ const Dashboard = () => {
   useEffect(() => {
     GetDataSearching(valueInputSearching);
   }, [valueInputSearching]);
+  useEffect(() => {
+    GetDataSelectEventType(eventType);
+  }, [deleteStatus, eventType]);
+  useEffect(() => {
+    GetDataSelectEventStatus(eventStatus);
+  }, [deleteStatus, eventStatus]);
   return (
-    <div>
+    <div className="p-5">
       <SectionHeader viewButton user={user} />
       <FilterTrainingEvent />
       <MyTrainingEventTable

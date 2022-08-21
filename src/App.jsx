@@ -1,5 +1,5 @@
 import { Dashboard, Login } from './Pages';
-
+import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Role, Token } from './Utils';
 const setToken = (userToken) => {

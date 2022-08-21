@@ -2,7 +2,7 @@ import { LabelSection, TableData } from '../../Components';
 import PropTypes from 'prop-types';
 const AllTrainingEventTable = ({ dataTable, columns }) => {
   return (
-    <div className="site-card-wrapper">
+    <div className="bg-card rounded-[10px] p-5 m-5">
       <LabelSection
         label="All Training Event"
         dataBadge={5}
@@ -11,10 +11,12 @@ const AllTrainingEventTable = ({ dataTable, columns }) => {
           color: '#2db7f5',
           fontWeight: 'bold'
         }}></LabelSection>
-      <TableData
-        dataTable={dataTable}
-        pagination={{ defaultPageSize: 10 }}
-        columns={columns}></TableData>
+      <div className="overflow-x-auto">
+        <TableData
+          dataTable={dataTable}
+          pagination={{ defaultPageSize: 10 }}
+          columns={columns}></TableData>
+      </div>
     </div>
   );
 };
