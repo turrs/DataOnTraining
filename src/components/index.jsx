@@ -1,4 +1,26 @@
 import ButtonIcon from './ButtonIcon';
 import LabelSection from './LabelSection';
-import HeaderLogin from './HeaderLogin';
-export { ButtonIcon, LabelSection, HeaderLogin };
+import HeaderLogin from '../parts/HeaderLogin';
+import SelectBox from './SelectBox';
+import TableData from './TableData';
+import TextInput from './TextInput';
+import Toggle from './Toggle';
+import CarouselImage from './CarouselImage';
+import FormLogin from './FormLogin';
+import Notification from './Notification';
+import SectionHeader from './SectionHeader';
+import Link from './Link';
+export {
+  ButtonIcon,
+  LabelSection,
+  HeaderLogin,
+  SelectBox,
+  TableData,
+  TextInput,
+  Toggle,
+  CarouselImage,
+  FormLogin,
+  Notification,
+  SectionHeader,
+  Link
+};

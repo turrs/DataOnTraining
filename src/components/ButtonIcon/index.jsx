@@ -14,7 +14,7 @@ ButtonIcon.propTypes = {
   textButton: PropTypes.string.isRequired,
   style: PropTypes.object,
   icon: PropTypes.object,
-  onClick: PropTypes.object,
+  onClick: PropTypes.func,
   type: PropTypes.string,
   dataTestId: PropTypes.string
 };
