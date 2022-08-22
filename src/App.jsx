@@ -1,15 +1,21 @@
 import { Dashboard, Login } from './Pages';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-function App() {
+import { Role, Token } from './Utils';
+const setToken = (userToken) => {
+  sessionStorage.setItem('token', JSON.stringify(userToken));
+};
+const App = () => {
+  const token = Token();
+  const role = Role();
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />}></Route>
+        <Route path="/login" element={<Login setToken={setToken} />}></Route>
         <Route path="/dashboard" element={<Dashboard />}></Route>
       </Routes>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
