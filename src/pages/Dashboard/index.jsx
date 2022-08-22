@@ -11,8 +11,6 @@ import {
 
 const Dashboard = () => {
   const {
-    user,
-    setUser,
     DataAllTrainings,
     AllTrainingTableColumnContext,
     MyTrainingTableColumnContext,
@@ -23,22 +21,19 @@ const Dashboard = () => {
     GetDataSelectEventStatus,
     eventType,
     eventStatus,
-    deleteStatus,
     view
   } = useContext(AppContext);
-  const userInfo = JSON.parse(localStorage.getItem('user-info'));
+  const id = JSON.parse(localStorage.getItem('id'));
+  const user = JSON.parse(localStorage.getItem('user-info'));
   useEffect(() => {
-    setUser(userInfo);
-  }, []);
-  useEffect(() => {
-    GetDataSearching(valueInputSearching);
+    GetDataSearching(valueInputSearching, id);
   }, [valueInputSearching]);
   useEffect(() => {
-    GetDataSelectEventType(eventType);
-  }, [deleteStatus, eventType]);
+    GetDataSelectEventType(eventType, id);
+  }, [eventType]);
   useEffect(() => {
-    GetDataSelectEventStatus(eventStatus);
-  }, [deleteStatus, eventStatus]);
+    GetDataSelectEventStatus(eventStatus, id);
+  }, [eventStatus]);
   return (
     <div className="p-5">
       <SectionHeader viewButton user={user} />

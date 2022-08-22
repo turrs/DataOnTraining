@@ -17,7 +17,7 @@ const MyTrainingCard = ({ item, id }) => {
 
   const openLocation = () => {
     window.open(
-      `https://www.google.com/maps/search/?api=1&query=${location.lat},${location.lng}`,
+      `https://www.google.com/maps/search/?api=1&query=${item.location.lat},${item.location.lng}`,
       '_blank'
     );
   };
@@ -76,7 +76,7 @@ const MyTrainingCard = ({ item, id }) => {
       }}
       bodyStyle={{ padding: '0' }}
       hoverable>
-      <Row onClick={showDetail} className="row-top">
+      <Row className="row-top">
         <Col>
           <Image
             alt="example"
@@ -90,7 +90,7 @@ const MyTrainingCard = ({ item, id }) => {
             }}
           />
         </Col>
-        <Col className="row-top-detail">
+        <Col onClick={showDetail} className="row-top-detail">
           <Space direction="vertical" size={3} style={{ display: 'flex' }}>
             <Text style={{ fontSize: '11px' }}>
               <EnvironmentOutlined /> {item.trainer}
@@ -158,6 +158,5 @@ export default MyTrainingCard;
 MyTrainingCard.propTypes = {
   url: PropTypes.string,
   item: PropTypes.object,
-  id: PropTypes.string,
-  location: PropTypes.object.isRequired
+  id: PropTypes.string
 };

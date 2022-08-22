@@ -12,6 +12,7 @@ import SectionHeader from './SectionHeader';
 import Link from './Link';
 import MyTrainingCard from './MyTrainingCard';
 import AllTrainingCard from './AllTrainingCard';
+import TransferData from './TransferData';
 export {
   ButtonIcon,
   LabelSection,
@@ -26,5 +27,6 @@ export {
   SectionHeader,
   Link,
   MyTrainingCard,
-  AllTrainingCard
+  AllTrainingCard,
+  TransferData
 };

@@ -9,7 +9,7 @@ const ColumnsMyTraining = [
     dataIndex: 'eventName',
     key: 'eventName',
     sorter: (a, b) => a.eventName.localeCompare(b.eventName),
-    render: (eventName) => <Link></Link>
+    render: (eventName) => <Link title={eventName}></Link>
   },
   {
     title: 'EventName',
@@ -35,9 +35,9 @@ const ColumnsMyTraining = [
   },
   {
     title: 'Trainer Name',
-    dataIndex: 'speaker',
-    key: 'speaker',
-    sorter: (a, b) => a.speaker.localeCompare(b.speaker)
+    dataIndex: 'trainer',
+    key: 'trainer',
+    sorter: (a, b) => a.trainer.localeCompare(b.trainer)
   },
   {
     title: 'Ratings',
@@ -48,9 +48,9 @@ const ColumnsMyTraining = [
   },
   {
     title: 'Additional Info',
-    dataIndex: 'information',
-    key: 'information',
-    sorter: (a, b) => a.information.localeCompare(b.information)
+    dataIndex: 'additionalInfo',
+    key: 'additionalInfo',
+    sorter: (a, b) => a.additionalInfo.localeCompare(b.additionalInfo)
   }
 ];
 

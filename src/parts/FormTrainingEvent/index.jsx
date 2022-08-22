@@ -1,5 +1,6 @@
 import { UploadOutlined } from '@ant-design/icons';
 import { Form, Input, Button, Radio, Select, DatePicker, Upload, Row, Col } from 'antd';
+import { TransferData } from '../../Components';
 const { RangePicker } = DatePicker;
 const { Option, OptGroup } = Select;
 const FormTrainingEvent = () => {
@@ -129,6 +130,27 @@ const FormTrainingEvent = () => {
           ]}>
           <Input placeholder="Input Information Event" />
         </Form.Item>
+        <Form.Item name="employe" label="Employe">
+          <div className="max-w-[500px]">
+            <TransferData />
+          </div>
+        </Form.Item>
+
+        <div className="grow-1">
+          <Row>
+            <Col
+              span={24}
+              style={{
+                textAlign: 'right',
+                padding: 20,
+                borderTop: '1px #dddddd solid'
+              }}>
+              <Button type="primary" htmlType="submit" style={{ borderRadius: 5, width: 100 }}>
+                Submit
+              </Button>
+            </Col>
+          </Row>
+        </div>
       </Form>
     </div>
   );

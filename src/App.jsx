@@ -1,13 +1,11 @@
-import { CreateEvent, Dashboard, Login } from './Pages';
+import { CreateEvent, Dashboard, DetailEvent, Login } from './Pages';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Role, Token } from './Utils';
+
 const setToken = (userToken) => {
   sessionStorage.setItem('token', JSON.stringify(userToken));
 };
 const App = () => {
-  const token = Token();
-  const role = Role();
   return (
     <BrowserRouter>
       <Routes>
@@ -15,6 +13,8 @@ const App = () => {
         <Route path="/login" element={<Login setToken={setToken} />}></Route>
         <Route path="/dashboard" element={<Dashboard />}></Route>
         <Route path="/training/create" element={<CreateEvent />} />
+        <Route path="/training/:id" element={<DetailEvent />} />
+        <Route path="/mytraining/:id" element={<DetailEvent />} />
       </Routes>
     </BrowserRouter>
   );

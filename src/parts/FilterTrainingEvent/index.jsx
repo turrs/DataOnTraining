@@ -38,7 +38,7 @@ const FilterTrainingEvent = () => {
   };
   const debounceFunc = useCallback(debounce(onChangeSearching, 1000), []);
   return (
-    <div className="bg-card rounded-[10px] p-5 m-5 md:flex md:flex-row">
+    <div className="bg-card rounded-[10px] p-5 m-5 sm:flex sm:flex-row">
       <div className="basis-1/4">
         <TextInput
           type="search"
@@ -62,7 +62,7 @@ const FilterTrainingEvent = () => {
           onChange={statusChange}
           value={eventStatus}></SelectBox>
       </div>
-      <div className="basis-1/4 md:flex md:flex-row">
+      <div className="basis-1/4 sm:flex sm:flex-row">
         <div className="switch">
           <Toggle label="Related Job Only"></Toggle>
         </div>
