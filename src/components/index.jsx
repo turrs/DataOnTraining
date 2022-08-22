@@ -10,6 +10,8 @@ import FormLogin from './FormLogin';
 import Notification from './Notification';
 import SectionHeader from './SectionHeader';
 import Link from './Link';
+import MyTrainingCard from './MyTrainingCard';
+import AllTrainingCard from './AllTrainingCard';
 export {
   ButtonIcon,
   LabelSection,
@@ -22,5 +24,7 @@ export {
   FormLogin,
   Notification,
   SectionHeader,
-  Link
+  Link,
+  MyTrainingCard,
+  AllTrainingCard
 };

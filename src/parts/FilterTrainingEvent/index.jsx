@@ -38,38 +38,42 @@ const FilterTrainingEvent = () => {
   };
   const debounceFunc = useCallback(debounce(onChangeSearching, 1000), []);
   return (
-    <div className="container-gridd">
-      <TextInput
-        type="search"
-        label="Search Training"
-        placeholder="Search Training"
-        style={{ width: 230, borderRadius: 5 }}
-        onChange={(value) => debounceFunc(value.target.value)}
-        dataTestId="inputSearch"
-      />
-      <SelectBox
-        type="event"
-        style={{ width: 230 }}
-        onChange={eventChange}
-        value={eventType}
-        dataTestId="selectEvent"></SelectBox>
-      <SelectBox
-        type="status"
-        style={{ width: 230 }}
-        onChange={statusChange}
-        value={eventStatus}
-        dataTestId="selectStatus"></SelectBox>
-      <div className="switch">
-        <Toggle dataTestId="switch" label="Related Job Only"></Toggle>
-      </div>
-      <div className="wrapperButton">
-        <ButtonIcon
-          dataTestId="button"
-          textButton={view ? 'View All List' : 'View as Card'}
-          style={{ borderRadius: 5, width: 200 }}
-          icon={view ? <UnorderedListOutlined /> : <AppstoreOutlined />}
-          onClick={view ? onClickAsList : onClickAsCard}
+    <div className="bg-card rounded-[10px] p-5 m-5 md:flex md:flex-row">
+      <div className="basis-1/4">
+        <TextInput
+          type="search"
+          label="Search Training"
+          placeholder="Search Training"
+          style={{ width: 230, borderRadius: 5 }}
+          onChange={(value) => debounceFunc(value.target.value)}
         />
+      </div>
+      <div className="basis-1/4">
+        <SelectBox
+          type="event"
+          style={{ width: 230 }}
+          onChange={eventChange}
+          value={eventType}></SelectBox>
+      </div>
+      <div className="basis-1/4">
+        <SelectBox
+          type="status"
+          style={{ width: 230 }}
+          onChange={statusChange}
+          value={eventStatus}></SelectBox>
+      </div>
+      <div className="basis-1/4 md:flex md:flex-row">
+        <div className="switch">
+          <Toggle label="Related Job Only"></Toggle>
+        </div>
+        <div className="wrapperButton">
+          <ButtonIcon
+            textButton={view ? 'View All List' : 'View as Card'}
+            style={{ borderRadius: 5, width: 200 }}
+            icon={view ? <UnorderedListOutlined /> : <AppstoreOutlined />}
+            onClick={view ? onClickAsList : onClickAsCard}
+          />
+        </div>
       </div>
     </div>
   );

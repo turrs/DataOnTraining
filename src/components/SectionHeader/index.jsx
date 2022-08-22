@@ -1,5 +1,5 @@
 import { MoreOutlined, PlusOutlined } from '@ant-design/icons';
-import { Breadcrumb, Button, Col, Dropdown, Menu, Row } from 'antd';
+import { Breadcrumb, Button, Dropdown, Menu } from 'antd';
 import { useNavigate, Link, useLocation, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 const SectionHeader = ({ viewButton, user }) => {
@@ -70,18 +70,13 @@ const SectionHeader = ({ viewButton, user }) => {
 
   return (
     <>
-      <div className="site-card-wrapper">
-        <Row>
-          <Col
-            span={12}
-            style={{
-              textAlign: 'left',
-              paddingTop: 5,
-              paddingLeft: 5
-            }}>
+      <div className="bg-card rounded-[10px] p-5 m-5 flex sm:block sm:flex-wrap">
+        <div className="row sm:flex sm:flex-wrap sm:block">
+          <div className="basis-1/2">
             <Breadcrumb separator=">">{breadcrumbItems}</Breadcrumb>
-          </Col>
-          <Col
+          </div>
+          <div
+            className="basis-1/2"
             span={12}
             style={{
               textAlign: 'right',
@@ -115,8 +110,8 @@ const SectionHeader = ({ viewButton, user }) => {
                 </Dropdown.Button>
               </>
             )}
-          </Col>
-        </Row>
+          </div>
+        </div>
       </div>
     </>
   );
