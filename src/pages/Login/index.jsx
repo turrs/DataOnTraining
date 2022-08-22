@@ -1,4 +1,4 @@
-import { FormLogin } from '../../Components';
+import { CarouselImage, FormLogin } from '../../Components';
 import { HeaderLogin, FooterLogin } from '../../parts';
 
 const Login = () => {

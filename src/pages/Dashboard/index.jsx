@@ -1,7 +1,13 @@
 import { useEffect, useContext } from 'react';
 import { SectionHeader } from '../../Components';
 import { AppContext } from '../../Context';
-import { AllTrainingEventTable, FilterTrainingEvent, MyTrainingEventTable } from '../../parts';
+import {
+  AllTrainingEventCard,
+  AllTrainingEventTable,
+  FilterTrainingEvent,
+  MyTrainingEventCard,
+  MyTrainingEventTable
+} from '../../parts';
 
 const Dashboard = () => {
   const {
@@ -17,7 +23,8 @@ const Dashboard = () => {
     GetDataSelectEventStatus,
     eventType,
     eventStatus,
-    deleteStatus
+    deleteStatus,
+    view
   } = useContext(AppContext);
   const userInfo = JSON.parse(localStorage.getItem('user-info'));
   useEffect(() => {
@@ -36,14 +43,22 @@ const Dashboard = () => {
     <div className="p-5">
       <SectionHeader viewButton user={user} />
       <FilterTrainingEvent />
-      <MyTrainingEventTable
-        dataTable={DataMyTraining.data}
-        columns={MyTrainingTableColumnContext}
-      />
-      <AllTrainingEventTable
-        dataTable={DataAllTrainings.data}
-        columns={AllTrainingTableColumnContext}
-      />
+      {view ? (
+        <MyTrainingEventCard item={DataMyTraining} />
+      ) : (
+        <MyTrainingEventTable
+          dataTable={DataMyTraining.data}
+          columns={MyTrainingTableColumnContext}
+        />
+      )}
+      {view ? (
+        <AllTrainingEventCard item={DataAllTrainings} />
+      ) : (
+        <AllTrainingEventTable
+          dataTable={DataAllTrainings.data}
+          columns={AllTrainingTableColumnContext}
+        />
+      )}
     </div>
   );
 };
