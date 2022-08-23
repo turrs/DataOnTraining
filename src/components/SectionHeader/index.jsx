@@ -1,17 +1,25 @@
-import { MoreOutlined, PlusOutlined } from '@ant-design/icons';
-import { Breadcrumb, Button, Dropdown, Menu } from 'antd';
+import { MoreOutlined, PlusOutlined, EditOutlined } from '@ant-design/icons';
+import { Breadcrumb, Dropdown, Menu } from 'antd';
 import { useNavigate, Link, useLocation, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-const SectionHeader = ({ viewButton, user }) => {
-  console.log(user);
+import ButtonIcon from '../ButtonIcon';
+const SectionHeader = ({ viewButton, user, editButton }) => {
   const navigate = useNavigate();
   const params = useParams();
   const location = useLocation();
+  const pathSnippets = location.pathname.split('/').filter((i) => i);
+  const path = pathSnippets[0];
   const handleCreate = () => {
     navigate('/training/create');
   };
+  const handleEditMyTraining = (params) => {
+    navigate(`/mytraining/edit/${params.id}`);
+  };
+  const handleEditTraining = (params) => {
+    navigate(`/training/edit/${params.id}`);
+  };
   // breadcumb
-  const pathSnippets = location.pathname.split('/').filter((i) => i);
+
   const breadcrumbNameMaps = {
     '/': 'Dashboard',
     '/register': 'Register',
@@ -19,7 +27,7 @@ const SectionHeader = ({ viewButton, user }) => {
     ['/training/' + params.id]: 'Training Event Detail',
     '/training/create': 'Create Training',
     ['/mytraining/' + params.id]: 'Detail Page',
-    '/mytraining/edit': 'Edit',
+    '/mytraining/edit': '',
     ['/mytraining/edit/' + params.id]: 'Edit Detail',
     '/mytraining': 'My Training'
   };
@@ -82,17 +90,34 @@ const SectionHeader = ({ viewButton, user }) => {
               textAlign: 'right',
               padding: 0
             }}>
+            {editButton &&
+              (user?.role === 'admin' ? (
+                <>
+                  <ButtonIcon
+                    textButton="Edit"
+                    style={{ borderRadius: 5, fontWeight: 'bold' }}
+                    dataTestId="buttonEdit"
+                    icon={<EditOutlined />}
+                    onClick={() =>
+                      path === 'mytraining'
+                        ? handleEditMyTraining(params)
+                        : handleEditTraining(params)
+                    }
+                  />
+                </>
+              ) : null)}
             {viewButton && (
               <>
-                {user?.role === 'admin' ? (
-                  <Button
-                    data-testid="button"
-                    onClick={handleCreate}
-                    type="primary"
-                    htmlType="submit"
-                    style={{ borderRadius: 5, fontWeight: 'bold' }}>
-                    <PlusOutlined /> Create Training Event
-                  </Button>
+                {user.role === 'admin' ? (
+                  <>
+                    <ButtonIcon
+                      data-testid="button"
+                      onClick={handleCreate}
+                      type="primary"
+                      style={{ borderRadius: 5, fontWeight: 'bold' }}
+                      icon={<PlusOutlined />}
+                      textButton="Create Training Event"></ButtonIcon>
+                  </>
                 ) : null}
                 <Dropdown.Button
                   type="dashed"
@@ -121,5 +146,6 @@ export default SectionHeader;
 
 SectionHeader.propTypes = {
   user: PropTypes.object,
-  viewButton: PropTypes.bool
+  viewButton: PropTypes.bool,
+  editButton: PropTypes.bool
 };

@@ -6,7 +6,7 @@ const MyTrainingEventTable = ({ dataTable, columns }) => {
       <LabelSection
         label="My Training Event"
         data-testid="label"
-        dataBadge={50}
+        dataBadge={5}
         style={{
           backgroundColor: '#e7e7e7',
           color: '#2db7f5',

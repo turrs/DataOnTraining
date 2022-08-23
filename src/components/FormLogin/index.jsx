@@ -17,7 +17,6 @@ const FormLogin = ({ setToken }) => {
   };
 
   const handleSubmit = async () => {
-    console.log(username, password);
     // eslint-disable-next-line no-unused-vars, prefer-const
     let item = {
       username: username,

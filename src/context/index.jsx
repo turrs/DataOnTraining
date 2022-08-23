@@ -103,7 +103,6 @@ export const ContextWrapper = ({ children }) => {
   const DeleteDataMyTraining = async (params, id) => {
     await Axios.delete(`/users/${id}/trainings/${params}`)
       .then((res) => {
-        console.log(res.data);
         setDeleteStatus(true);
       })
       .catch((error) => {
@@ -114,12 +113,18 @@ export const ContextWrapper = ({ children }) => {
   // for get detail data
   const [userId, setUserId] = useState();
   const [dataDetail, setDataDetail] = useState('');
-  const GetDetailDataMyTraining = async (params, id) => {
+  const GetDetailDataTraining = async (path, params, id) => {
     try {
-      const response = await Axios.get(`/users/${id}/trainings/${params}`);
-      setDataDetail(response.data);
+      if (path === 'mytraining') {
+        const response = await Axios.get(`/users/${id}/trainings/${params}`);
+        setDataDetail(response.data);
+      }
+      if (path === 'training') {
+        const response = await Axios.get(`/trainings/${params}`);
+        setDataDetail(response.data);
+      }
     } catch (error) {
-      console.log('kok erorr', error);
+      console.log('kok erorr get detail', error);
     }
   };
 
@@ -186,7 +191,7 @@ export const ContextWrapper = ({ children }) => {
         setUserId,
         dataDetail,
         setDataDetail,
-        GetDetailDataMyTraining
+        GetDetailDataTraining
       }}>
       {children}
     </AppContext.Provider>

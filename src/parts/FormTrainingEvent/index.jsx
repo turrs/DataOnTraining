@@ -1,9 +1,51 @@
 import { UploadOutlined } from '@ant-design/icons';
 import { Form, Input, Button, Radio, Select, DatePicker, Upload, Row, Col } from 'antd';
+import { useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { TransferData } from '../../Components';
+import { AppContext } from '../../Context';
+import moment from 'moment';
+import PropTypes from 'prop-types';
 const { RangePicker } = DatePicker;
 const { Option, OptGroup } = Select;
-const FormTrainingEvent = () => {
+const FormTrainingEvent = ({ dataEdit, params }) => {
+  const [form] = Form.useForm();
+  const { CreateDataTraining } = useContext(AppContext);
+  const [componentSize, setComponentSize] = useState('default');
+  const [data, setData] = useState({
+    eventName: '',
+    startDate: '',
+    endDate: '',
+    image: '',
+    trainer: '',
+    location: '',
+    ratings: '',
+    isOnlineClass: '',
+    additionalInfo: '',
+    isComplete: '',
+    date: ''
+  });
+  form.setFieldsValue({
+    eventName: data.eventName,
+    date: [moment(data.startDate), moment(data.endDate)],
+    image: data.image,
+    isOnlineClass: data.isOnlineClass,
+    location: data.location,
+    trainer: data.trainer,
+    ratings: data.ratings,
+    additionalInfo: data.additionalInfo
+  });
+
+  useEffect(() => {
+    if (params) {
+      setData(dataEdit);
+    }
+  }, [dataEdit]);
+  const navigate = useNavigate();
+
+  const onFormLayoutChange = ({ size }) => {
+    setComponentSize(size);
+  };
   const rangeConfig = {
     rules: [
       {
@@ -13,15 +55,52 @@ const FormTrainingEvent = () => {
       }
     ]
   };
+  const normFile = (e) => {
+    if (Array.isArray(e)) {
+      return e;
+    }
+
+    return e?.fileList;
+  };
+  const onFinish = (values) => {
+    try {
+      const starDate = values.date[0].format('YYYY-MM-DD');
+      const endDate = values.date[1].format('YYYY-MM-DD');
+      const data = {
+        eventName: values.eventName,
+        isOnlineClass: values.isOnlineClass,
+        startDate: starDate,
+        // eslint-disable-next-line object-shorthand
+        endDate: endDate,
+        location: { lat: values.latitude, long: values.longitude },
+        isComplete: values.status,
+        trainer: values.trainer,
+        additionalInfo: values.additionalInfo
+      };
+      CreateDataTraining(data);
+      form.resetFields();
+      navigate('/dashboard');
+    } catch (err) {
+      alert(err);
+      console.log('ni erorrr', err);
+    }
+  };
   return (
     <div className="bg-card rounded-[10px] p-5 m-5">
       <Form
+        onFinish={onFinish}
         labelCol={{
           span: 7
         }}
         wrapperCol={{
           span: 13
         }}
+        initialValues={{
+          size: componentSize
+        }}
+        onValuesChange={onFormLayoutChange}
+        size={componentSize}
+        form={params ? form : form.resetFields()}
         layout="horizontal">
         <Form.Item
           name="isOnlineClass"
@@ -53,6 +132,7 @@ const FormTrainingEvent = () => {
           name="event-thumbnail"
           label="Event Thumbnail"
           valuePropName="fileList"
+          getValueFromEvent={normFile}
           extra="Recommended image resolution is 500x300 (5:3 aspect ratio, max. 2MB, jpg/jpeg)"
           rules={[
             {
@@ -157,3 +237,8 @@ const FormTrainingEvent = () => {
 };
 
 export default FormTrainingEvent;
+
+FormTrainingEvent.propTypes = {
+  dataEdit: PropTypes.object,
+  params: PropTypes.string
+};

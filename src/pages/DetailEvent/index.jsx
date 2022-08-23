@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useEffect, useContext } from 'react';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { ButtonIcon, SectionHeader } from '../../Components';
 import { AppContext } from '../../Context';
 import { Typography, Image, Avatar, Space, Card, Row, Col } from 'antd';
@@ -14,27 +14,29 @@ import {
 import { UseCheckMobile } from '../../Utils';
 const DetailEvent = () => {
   const { Title, Text } = Typography;
-  const { GetDetailDataMyTraining, dataDetail } = useContext(AppContext);
-  const navigate = useNavigate();
-  const location = useLocation();
+  const { GetDetailDataTraining, dataDetail } = useContext(AppContext);
   const params = useParams();
+  const location = useLocation();
+  const pathSnippets = location.pathname.split('/').filter((i) => i);
+  const path = pathSnippets[0];
   const id = JSON.parse(localStorage.getItem('id'));
   useEffect(() => {
-    GetDetailDataMyTraining(params.id, id);
-  }, [location, params]);
-
+    if (path === 'mytraining') {
+      GetDetailDataTraining(path, params.id, id);
+    }
+    if (path === 'training') {
+      GetDetailDataTraining(path, params.id, id);
+    }
+  }, [params, location]);
+  const user = JSON.parse(localStorage.getItem('user-info'));
   const mobile = UseCheckMobile();
-  console.log(12345, navigate);
-  console.log(123456, location);
-  console.log(1234567, params.id);
-  console.log(dataDetail);
   return (
     <div>
-      <SectionHeader />
+      <SectionHeader viewButton={false} user={user} editButton />
       <div className="bg-card rounded-[10px] p-5 m-5">
         <div className="pl-5 pr-5">
           <Title strong level={2}>
-            {location.state.eventName}
+            {dataDetail.eventName}
           </Title>
         </div>
         <div className="pl-5 pr-5">
@@ -55,7 +57,7 @@ const DetailEvent = () => {
                   borderRadius: '20px',
                   height: 300
                 }}
-                src={location.state.thumbnail}
+                src={dataDetail.thumbnail}
               />
             </div>
             <div className="p-5">
@@ -113,8 +115,8 @@ const DetailEvent = () => {
               </div>
             </div>
           </div>
-          <div className="basis-1/2 flex">
-            <div className="p-10">
+          <div className="basis-1/2">
+            <div className="p-10 grow-1">
               <div className="p-10">
                 <Text style={{ fontSize: '20px', fontWeight: 700 }}>
                   <SolutionOutlined /> Overview
@@ -123,9 +125,9 @@ const DetailEvent = () => {
               <div className="pl-10 pr-10 pb-10 flex flex-row">
                 <div className="grow-1">
                   <Text style={{ fontSize: '16px', fontWeight: 700 }}>
-                    <CalendarOutlined /> {location.state.startDate}
+                    <CalendarOutlined /> {dataDetail.startDate}
                     <InfoCircleOutlined style={{ marginLeft: 20, marginRight: 5 }} />
-                    {location.state.isOnlineClass === true ? 'Online Class' : 'Offline Class'}
+                    {dataDetail.isOnlineClass === true ? 'Online Class' : 'Offline Class'}
                     <UserOutlined style={{ marginLeft: 20 }} /> 2 / 5 Person
                   </Text>
                   <Text
@@ -162,7 +164,7 @@ const DetailEvent = () => {
                   <Space direction="vertical" size={6} style={{ display: 'flex', padding: 10 }}>
                     <Text style={{ fontSize: '16px', fontWeight: 700 }}>
                       <SolutionOutlined style={{ marginRight: 5 }} />
-                      {location.state.isOnlineClass === true ? 'Online Class ' : 'Offline Class '}
+                      {dataDetail.isOnlineClass === true ? 'Online Class ' : 'Offline Class '}
                       Detail
                     </Text>
                     <Text
@@ -185,7 +187,7 @@ const DetailEvent = () => {
                         fontSize: '14px',
                         color: '#8e8e8e'
                       }}>
-                      {location.state.startDate}
+                      {dataDetail.startDate}
                     </Text>
                     <Text style={{ fontSize: '14px', fontWeight: 700 }}>Location</Text>
                     <Text
@@ -193,7 +195,7 @@ const DetailEvent = () => {
                         fontSize: '14px',
                         color: '#8e8e8e'
                       }}>
-                      {location.state.trainer}
+                      {dataDetail.trainer}
                     </Text>
                     <Text style={{ fontSize: '14px', fontWeight: 700 }}>Status</Text>
                     <Text
@@ -201,7 +203,7 @@ const DetailEvent = () => {
                         fontSize: '14px',
                         color: '#8e8e8e'
                       }}>
-                      {location.state.isComplete === true
+                      {dataDetail.isComplete === true
                         ? 'Close Registration'
                         : 'Open for Registration'}
                     </Text>
@@ -211,7 +213,7 @@ const DetailEvent = () => {
                         fontSize: '14px',
                         color: '#8e8e8e'
                       }}>
-                      {location.state.endDate}
+                      {dataDetail.endDate}
                     </Text>
                     <Text style={{ fontSize: '14px', fontWeight: 700 }}>Trainer</Text>
                     <Text
@@ -219,7 +221,7 @@ const DetailEvent = () => {
                         fontSize: '14px',
                         color: '#8e8e8e'
                       }}>
-                      {location.state.trainer}
+                      {dataDetail.trainer}
                     </Text>
                   </Space>
                 </Card>
