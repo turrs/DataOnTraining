@@ -34,7 +34,7 @@ const AllTrainingEventCard = ({ item }) => {
           renderItem={(item) => (
             <List.Item>
               <Row justify="space-between">
-                <Col ant-col-xs-24 ant-col-xl-8>
+                <Col>
                   <AllTrainingCard data={item} />
                 </Col>
               </Row>

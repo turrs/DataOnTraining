@@ -1,10 +1,17 @@
 import { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Axios, ColumnsAllTraining, ColumnsMyTraining } from '../Utils';
+import { Axios, ColumnsAllTraining, ColumnsMyTraining, Role, Token } from '../Utils';
+// import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { Notification } from '../Components';
 export const AppContext = createContext(null);
 
 export const ContextWrapper = ({ children }) => {
+  const token = Token();
+  const role = Role();
+  // const navigate = useNavigate();
+  // const location = useLocation();
+  // const params = useParams();
+  // const [params]
   const [user, setUser] = useState();
   const [AllTrainingTableColumnContext] = useState(ColumnsAllTraining);
   const [MyTrainingTableColumnContext] = useState(ColumnsMyTraining);
@@ -20,8 +27,8 @@ export const ContextWrapper = ({ children }) => {
 
   // for get data my training
   const [DataMyTraining, setDataMyTraining] = useState([]);
-  const GetMyTraining = async () => {
-    const response = await Axios.get(`/users/1/trainings`);
+  const GetMyTraining = async (id) => {
+    const response = await Axios.get(`/users/${id}/trainings`);
     setDataMyTraining(response.data);
   };
 
@@ -37,10 +44,10 @@ export const ContextWrapper = ({ children }) => {
   };
 
   // for edit data my training
-  const EditDataTraining = async (dataEdit, paramsId, userId) => {
+  const EditDataTraining = async (dataEdit, paramsId, id) => {
     try {
       var messages = 'Event successfully Update';
-      const response = await Axios.put(`users/${userId}/trainings/${paramsId}`, dataEdit);
+      const response = await Axios.put(`users/${id}/trainings/${paramsId}`, dataEdit);
       Notification(messages, 'success');
     } catch (error) {
       Notification(error.message, 'warn');
@@ -54,9 +61,9 @@ export const ContextWrapper = ({ children }) => {
   // for filter event status
   const [eventType, setEventType] = useState('');
   // get data searching
-  const GetDataSearching = async (valueInputSearching) => {
+  const GetDataSearching = async (valueInputSearching, id) => {
     const endpoints = [
-      `/users/1/trainings?search=${valueInputSearching}/`,
+      `/users/${id}/trainings?search=${valueInputSearching}/`,
       `/trainings?search=${valueInputSearching}`
     ];
     await Promise.all(endpoints.map((endpoint) => Axios.get(endpoint))).then(
@@ -67,9 +74,9 @@ export const ContextWrapper = ({ children }) => {
     );
   };
   // for filter select type event
-  const GetDataSelectEventType = async (eventType) => {
+  const GetDataSelectEventType = async (eventType, id) => {
     const endpoints = [
-      `/users/1/trainings?isOnlineClass=${eventType}`,
+      `/users/${id}/trainings?isOnlineClass=${eventType}`,
       `/trainings?isOnlineClass=${eventType}`
     ];
     await Promise.all(endpoints.map((endpoint) => Axios.get(endpoint))).then(
@@ -79,9 +86,9 @@ export const ContextWrapper = ({ children }) => {
       }
     );
   };
-  const GetDataSelectEventStatus = async (eventStatus) => {
+  const GetDataSelectEventStatus = async (eventStatus, id) => {
     const endpoints = [
-      `/users/1/trainings?isComplete=${eventStatus}`,
+      `/users/${id}/trainings?isComplete=${eventStatus}`,
       `/trainings?isComplete=${eventStatus}`
     ];
     await Promise.all(endpoints.map((endpoint) => Axios.get(endpoint))).then(
@@ -93,10 +100,9 @@ export const ContextWrapper = ({ children }) => {
   };
   // for delete data my training
   const [deleteStatus, setDeleteStatus] = useState(false);
-  const DeleteDataMyTraining = async (id) => {
-    await Axios.delete(`/users/1/trainings/${id}`)
+  const DeleteDataMyTraining = async (params, id) => {
+    await Axios.delete(`/users/${id}/trainings/${params}`)
       .then((res) => {
-        console.log(res.data);
         setDeleteStatus(true);
       })
       .catch((error) => {
@@ -104,10 +110,28 @@ export const ContextWrapper = ({ children }) => {
       });
   };
 
+  // for get detail data
+  const [userId, setUserId] = useState();
+  const [dataDetail, setDataDetail] = useState('');
+  const GetDetailDataTraining = async (path, params, id) => {
+    try {
+      if (path === 'mytraining') {
+        const response = await Axios.get(`/users/${id}/trainings/${params}`);
+        setDataDetail(response.data);
+      }
+      if (path === 'training') {
+        const response = await Axios.get(`/trainings/${params}`);
+        setDataDetail(response.data);
+      }
+    } catch (error) {
+      console.log('kok erorr get detail', error);
+    }
+  };
+
   // for search card training
   const [valueCardTraining, setValueCardTraining] = useState('');
-  const SearchCardTraining = async (valueCardTraining) => {
-    const myTraining = await Axios.get(`/users/1/trainings?search=${valueCardTraining}`);
+  const SearchCardTraining = async (valueCardTraining, id) => {
+    const myTraining = await Axios.get(`/users/${id}/trainings?search=${valueCardTraining}`);
     const allTraining = await Axios.get(`/trainings?search=${valueCardTraining}`);
 
     Promise.all([myTraining, allTraining]).then(
@@ -162,7 +186,12 @@ export const ContextWrapper = ({ children }) => {
         GetDataSelectEventType,
         GetDataSelectEventStatus,
         user,
-        setUser
+        setUser,
+        userId,
+        setUserId,
+        dataDetail,
+        setDataDetail,
+        GetDetailDataTraining
       }}>
       {children}
     </AppContext.Provider>

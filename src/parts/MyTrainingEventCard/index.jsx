@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { Badge, Carousel, Col, Row, Empty } from 'antd';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import './index.css';
+import { UseCheckMobile } from '../../Utils';
 const MyTrainingEventCard = ({ item }) => {
+  const mobile = UseCheckMobile();
   return (
     <div className="bg-card rounded-[10px] p-5 m-5">
       <div className="title-event">
@@ -25,7 +27,7 @@ const MyTrainingEventCard = ({ item }) => {
         arrows
         dots={false}
         infinite={item.data.length > 3}
-        slidesToShow={3}
+        slidesToShow={mobile ? 1 : 3}
         slidesToScroll={1}
         prevArrow={<SlickButtonLeft />}
         nextArrow={<SlickButtonRight />}>

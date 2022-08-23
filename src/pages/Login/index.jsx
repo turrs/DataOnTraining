@@ -8,9 +8,11 @@ const Login = () => {
         <div>
           <HeaderLogin />
         </div>
-        <div className="flex flex-row">
-          <div className="basis-1/2">{/* <CarouselImage /> */}</div>
-          <div className="basis-1/2">
+        <div className="w-full flex flex-wrap">
+          <div className="sm:w-1/2">
+            <CarouselImage />
+          </div>
+          <div className="sm:w-1/2">
             <FormLogin />
           </div>
         </div>
