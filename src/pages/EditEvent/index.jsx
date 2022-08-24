@@ -24,7 +24,7 @@ const EditEvent = () => {
     <div>
       <SectionHeader />
       <div>
-        <FormTrainingEvent dataEdit={dataDetail} params={params} />
+        <FormTrainingEvent dataEdit={dataDetail} path={path} params={params.id} id={id} />
       </div>
     </div>
   );

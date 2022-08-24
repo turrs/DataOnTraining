@@ -12,7 +12,9 @@ import {
   PlusOutlined
 } from '@ant-design/icons';
 import { UseCheckMobile } from '../../Utils';
+import { useTranslation } from 'react-i18next';
 const DetailEvent = () => {
+  const { t } = useTranslation(['content']);
   const { Title, Text } = Typography;
   const { GetDetailDataTraining, dataDetail } = useContext(AppContext);
   const params = useParams();
@@ -41,7 +43,7 @@ const DetailEvent = () => {
         </div>
         <div className="pl-5 pr-5">
           <Title strong level={4} type="secondary">
-            Footbal Course
+            {t('trainingCreateEditDetail.subTitle')}
           </Title>
         </div>
         <div className="flex flex-row flex-wrap">
@@ -64,7 +66,7 @@ const DetailEvent = () => {
               <div className="shadow rounded-[20px] grow-1">
                 <div className="p-5">
                   <ButtonIcon
-                    textButton="Join Class"
+                    textButton={t('trainingCreateEditDetail.button.join')}
                     style={{ borderRadius: 5, width: '100%' }}
                     type={'primary'}
                   />
@@ -72,7 +74,7 @@ const DetailEvent = () => {
                 <div className="flex flex-row  pt-1 pb-5 pl-5 pr-5">
                   <div className="basis-1/2 flex flex-row">
                     <Text className="textJoined" strong>
-                      Joined Team
+                      {t('trainingCreateEditDetail.joinedTeam')}
                     </Text>
                     <div className="pl-2">
                       <Avatar
@@ -107,7 +109,7 @@ const DetailEvent = () => {
                           paddingTop: '5px'
                         }}></PlusOutlined>
                       <Text className="textInvite" strong type="secondary">
-                        Invite Others
+                        {t('trainingCreateEditDetail.button.invite')}
                       </Text>
                     </div>
                   </div>
@@ -119,7 +121,7 @@ const DetailEvent = () => {
             <div className="p-10 grow-1">
               <div className="p-10">
                 <Text style={{ fontSize: '20px', fontWeight: 700 }}>
-                  <SolutionOutlined /> Overview
+                  <SolutionOutlined /> {t('trainingCreateEditDetail.overview')}
                 </Text>
               </div>
               <div className="pl-10 pr-10 pb-10 flex flex-row">
@@ -127,15 +129,18 @@ const DetailEvent = () => {
                   <Text style={{ fontSize: '16px', fontWeight: 700 }}>
                     <CalendarOutlined /> {dataDetail.startDate}
                     <InfoCircleOutlined style={{ marginLeft: 20, marginRight: 5 }} />
-                    {dataDetail.isOnlineClass === true ? 'Online Class' : 'Offline Class'}
-                    <UserOutlined style={{ marginLeft: 20 }} /> 2 / 5 Person
+                    {dataDetail.isOnlineClass === true
+                      ? t('trainingCreateEditDetail.eventType.option1')
+                      : t('trainingCreateEditDetail.eventType.option2')}
+                    <UserOutlined style={{ marginLeft: 20 }} /> 2 / 5
+                    {t('trainingCreateEditDetail.person')}
                   </Text>
                   <Text
                     style={{
                       fontSize: '16px',
                       fontWeight: 700
                     }}>
-                    Instructor
+                    {t('trainingCreateEditDetail.instructor')}
                   </Text>
                 </div>
               </div>
@@ -158,13 +163,15 @@ const DetailEvent = () => {
                         color: 'white',
                         fontWeight: 700
                       }}>
-                      Resources
+                      {t('trainingCreateEditDetail.resources')}
                     </Col>
                   </Row>
                   <Space direction="vertical" size={6} style={{ display: 'flex', padding: 10 }}>
                     <Text style={{ fontSize: '16px', fontWeight: 700 }}>
                       <SolutionOutlined style={{ marginRight: 5 }} />
-                      {dataDetail.isOnlineClass === true ? 'Online Class ' : 'Offline Class '}
+                      {dataDetail.isOnlineClass === true
+                        ? t('trainingCreateEditDetail.eventType.option1')
+                        : t('trainingCreateEditDetail.eventType.option2')}
                       Detail
                     </Text>
                     <Text
@@ -172,7 +179,7 @@ const DetailEvent = () => {
                         fontSize: '14px',
                         fontWeight: 700
                       }}>
-                      Event Number
+                      {t('trainingCreateEditDetail.number')}
                     </Text>
                     <Text
                       style={{
@@ -181,7 +188,9 @@ const DetailEvent = () => {
                       }}>
                       TREV-YYMM-XXXX
                     </Text>
-                    <Text style={{ fontSize: '14px', fontWeight: 700 }}>Date</Text>
+                    <Text style={{ fontSize: '14px', fontWeight: 700 }}>
+                      {t('trainingCreateEditDetail.date')}
+                    </Text>
                     <Text
                       style={{
                         fontSize: '14px',
@@ -189,7 +198,9 @@ const DetailEvent = () => {
                       }}>
                       {dataDetail.startDate}
                     </Text>
-                    <Text style={{ fontSize: '14px', fontWeight: 700 }}>Location</Text>
+                    <Text style={{ fontSize: '14px', fontWeight: 700 }}>
+                      {t('trainingCreateEditDetail.location')}
+                    </Text>
                     <Text
                       style={{
                         fontSize: '14px',
@@ -197,17 +208,21 @@ const DetailEvent = () => {
                       }}>
                       {dataDetail.trainer}
                     </Text>
-                    <Text style={{ fontSize: '14px', fontWeight: 700 }}>Status</Text>
+                    <Text style={{ fontSize: '14px', fontWeight: 700 }}>
+                      {t('trainingCreateEditDetail.status.label')}
+                    </Text>
                     <Text
                       style={{
                         fontSize: '14px',
                         color: '#8e8e8e'
                       }}>
                       {dataDetail.isComplete === true
-                        ? 'Close Registration'
-                        : 'Open for Registration'}
+                        ? t('trainingCreateEditDetail.status.radio2')
+                        : t('trainingCreateEditDetail.status.radio1')}
                     </Text>
-                    <Text style={{ fontSize: '14px', fontWeight: 700 }}>End Date</Text>
+                    <Text style={{ fontSize: '14px', fontWeight: 700 }}>
+                      {t('trainingCreateEditDetail.endDate')}
+                    </Text>
                     <Text
                       style={{
                         fontSize: '14px',
@@ -215,7 +230,9 @@ const DetailEvent = () => {
                       }}>
                       {dataDetail.endDate}
                     </Text>
-                    <Text style={{ fontSize: '14px', fontWeight: 700 }}>Trainer</Text>
+                    <Text style={{ fontSize: '14px', fontWeight: 700 }}>
+                      {t('trainingCreateEditDetail.trainer.label')}
+                    </Text>
                     <Text
                       style={{
                         fontSize: '14px',

@@ -2,14 +2,16 @@ import { Badge, Col, Row, List } from 'antd';
 import './index.css';
 import PropTypes from 'prop-types';
 import { AllTrainingCard } from '../../Components';
+import { useTranslation } from 'react-i18next';
 
 const AllTrainingEventCard = ({ item }) => {
+  const { t } = useTranslation(['dashboard']);
   return (
     <>
       <div className="bg-card rounded-[10px] p-5 m-5">
         <div className="title-event">
           <p>
-            All Training Event
+            {t('allTrainingEvent')}
             <Badge
               style={{
                 marginLeft: 5,

@@ -5,10 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import 'antd/dist/antd.css';
 import { Axios } from '../../Utils';
+import { useTranslation } from 'react-i18next';
 
 const { Text } = Typography;
 
 const MyTrainingCard = ({ item, id }) => {
+  const { t } = useTranslation(['content']);
   const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
@@ -108,15 +110,15 @@ const MyTrainingCard = ({ item, id }) => {
       <Row className="row-bottom" justify="space-between">
         <Col>
           {item.isComplete ? (
-            <p className="row-bottom-detail">Event Completed</p>
+            <p className="row-bottom-detail"> {t('mytrainingCard.isComplete.part1')}</p>
           ) : (
-            <p className="row-bottom-detail">Event Started</p>
+            <p className="row-bottom-detail">{t('mytrainingCard.isComplete.part2')}</p>
           )}
         </Col>
         <Col>
           {item.isComplete ? (
             <Button type="primary" size="small" style={{ fontSize: 12 }} onClick={showModal}>
-              Give Feedback
+              {t('mytrainingCard.button.part1')}
             </Button>
           ) : (
             <Button
@@ -125,11 +127,11 @@ const MyTrainingCard = ({ item, id }) => {
               style={{ fontSize: 12 }}
               onClick={openLocation}
               icon={<EnvironmentOutlined />}>
-              View Location
+              {t('mytrainingCard.button.part2')}
             </Button>
           )}
           <Modal
-            title="Give Feedback Rating"
+            title={t('mytrainingCard.modal')}
             visible={visible}
             onOk={handleOk}
             confirmLoading={confirmLoading}

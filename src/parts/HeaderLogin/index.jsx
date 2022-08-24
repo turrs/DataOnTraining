@@ -1,15 +1,26 @@
 import { Image, Select, Typography } from 'antd';
 import { ILogo } from '../../assets';
-
+import i18next from 'i18next';
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 const HeaderLogin = () => {
-  const { Option } = Select;
+  const { t, i18n } = useTranslation(['login']);
+  useEffect(() => {
+    if (localStorage.getItem('i18nextLng'?.length > 2)) {
+      i18next.changeLanguage('en');
+    }
+  }, []);
+
+  const onChangeLanguages = (event) => {
+    i18n.changeLanguage(event.value);
+  };
   return (
     <div className="flex flex-row border-b-2 border-gray">
       <div className="basis-1/8 pl-5 pr-5">
         <Image src={ILogo} style={{ width: 120, height: 50 }}></Image>
       </div>
       <div className="grow">
-        <div>Human Resources Information System</div>
+        <div>{t('header')}</div>
         <div>
           <Typography.Title level={5} style={{ margin: 0 }}>
             SunFish 7
@@ -21,15 +32,14 @@ const HeaderLogin = () => {
           <Select
             labelInValue
             bordered={false}
-            defaultValue={{
-              value: 'english',
-              label: 'English (EN)'
-            }}
+            defaultValue="English (EN)"
+            onChange={(event) => onChangeLanguages(event)}
+            name="language"
             style={{
               width: 150
             }}>
-            <Option value="indonesia">Indonesia(IDN)</Option>
-            <Option value="english">English(EN)</Option>
+            <Select.Option value="en">English (EN)</Select.Option>
+            <Select.Option value="id">Indonesia (IDN)</Select.Option>
           </Select>
         </div>
       </div>

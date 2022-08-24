@@ -1,10 +1,12 @@
 import { LabelSection, TableData } from '../../Components';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 const MyTrainingEventTable = ({ dataTable, columns }) => {
+  const { t } = useTranslation(['dashboard']);
   return (
     <div className="bg-card rounded-[10px] p-5 m-5">
       <LabelSection
-        label="My Training Event"
+        label={t('myTrainingEvent')}
         data-testid="label"
         dataBadge={5}
         style={{

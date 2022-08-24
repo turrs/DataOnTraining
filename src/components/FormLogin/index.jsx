@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { AppContext } from '../../Context';
+import { useTranslation } from 'react-i18next';
 const FormLogin = ({ setToken }) => {
+  const { t } = useTranslation(['login']);
   const { setUser, setUserId } = useContext(AppContext);
   const { Text } = Typography;
   const [username, setUsername] = useState('');
@@ -69,7 +71,7 @@ const FormLogin = ({ setToken }) => {
             fontWeight: 900,
             color: '#1890ff'
           }}>
-          Please enter your credential to access the system
+          {t('content')}
         </Text>
       </div>
       <Form
@@ -86,45 +88,45 @@ const FormLogin = ({ setToken }) => {
         data-testid="form-login">
         <Form.Item
           style={{ fontWeight: 'bold' }}
-          label="Username"
+          label={t('username.label')}
           name="username"
           rules={[
             {
               required: true,
-              message: 'Please input your username!'
+              message: `${t('username.messages.part1')}`
             },
             {
               max: 20,
-              message: 'Username must be less than 20'
+              message: `${t('username.messages.part2')}`
             },
             {
-              message: 'Username must be alphabets and numbers only'
+              message: `${t('username.messages.part3')}`
             }
           ]}>
           <Input
             style={{ width: 400 }}
-            placeholder="Enter your username here"
+            placeholder={t('username.placeholder')}
             data-testid="username"
             onChange={(event) => setUsername(event.target.value)}
           />
         </Form.Item>
         <Form.Item
           style={{ fontWeight: 'bold' }}
-          label="Password"
+          label={t('password.label')}
           name="password"
           rules={[
             {
               required: true,
-              message: 'Please input your password!'
+              message: `${t('password.messages.part1')}`
             },
             {
               min: 8,
-              message: 'Passwords must be at least 8 characters'
+              message: `${t('password.messages.part2')}`
             }
           ]}>
           <Input.Password
             style={{ width: 400 }}
-            placeholder="Password"
+            placeholder={t('password.placeholder')}
             data-testid="password"
             onChange={(event) => setPassword(event.target.value)}
           />
@@ -138,11 +140,11 @@ const FormLogin = ({ setToken }) => {
           }}>
           <Row>
             <Col span={12}>
-              <Checkbox>Remember me</Checkbox>
+              <Checkbox>{t('checkbox')}</Checkbox>
             </Col>
             <Col span={12}>
               <p>
-                <a href="#">Forgot password?</a>
+                <a href="#">{t('password.forgotPassword')}</a>
               </p>
             </Col>
           </Row>
@@ -155,7 +157,7 @@ const FormLogin = ({ setToken }) => {
           <Row>
             <Col span={24}>
               <p>
-                Haven`t account? <Link to="/register">Register</Link>
+                {t('account.part1')} <Link to="/register">{t('account.part2')}</Link>
               </p>
             </Col>
           </Row>
@@ -165,10 +167,10 @@ const FormLogin = ({ setToken }) => {
             type="primary"
             htmlType="submit"
             data-testid="login-button">
-            Login
+            {t('button')}
           </Button>
         </Form.Item>
-        {flag && <Alert message="Wrong username/password!" type="warning" />}
+        {flag && <Alert message={t('alert')} type="warning" />}
       </Form>
     </div>
   );
