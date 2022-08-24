@@ -1,9 +1,18 @@
+import { Row, Col, Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
+
 const FooterLogin = () => {
+  const { Text } = Typography;
+  const { t } = useTranslation(['login']);
   return (
-    <div className="flex p-5 m-5 justify-center">
-      <div>This product is licensed for Dataon Corporation</div>
-      <div>&copy; 1999 - 2022 DataOn Technology, All Right Reserved</div>
-    </div>
+    <Row className="footer" data-testid="footer">
+      <Col span={24} style={{ textAlign: 'center', paddingTop: 20 }}>
+        <Text style={{ fontSize: '16px', color: '#888888' }}>{t('footer.line1')}</Text>
+      </Col>
+      <Col span={24} style={{ textAlign: 'center', paddingBottom: 20 }}>
+        <Text style={{ fontSize: '16px', color: '#888888' }}>{t('footer.line2')}</Text>
+      </Col>
+    </Row>
   );
 };
 

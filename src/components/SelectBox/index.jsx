@@ -1,5 +1,6 @@
 import { Select } from 'antd';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import './index.css';
 const SelectBox = ({ type, style, onChange, value, defaultValue, dataTestId }) => {
   //   const { Option } = Select;
@@ -7,10 +8,10 @@ const SelectBox = ({ type, style, onChange, value, defaultValue, dataTestId }) =
     event: 'Event Type',
     status: 'Status'
   };
-
+  const { t } = useTranslation(['dashboard']);
   return (
     <div>
-      <p className="label">{type === 'status' ? label.status : label.event}</p>
+      <p className="label"> {type === 'status' ? label.status : label.event}</p>
       <div>
         <Select
           onChange={onChange}
@@ -23,10 +24,10 @@ const SelectBox = ({ type, style, onChange, value, defaultValue, dataTestId }) =
           {type === 'status' ? (
             <>
               <Select.Option value="true">
-                <p>Finish</p>
+                <p> {t('status.option.part1')}</p>
               </Select.Option>
               <Select.Option value="false">
-                <p>OnGoing</p>
+                <p> {t('status.option.part2')}</p>
               </Select.Option>
             </>
           ) : (

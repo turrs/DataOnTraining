@@ -43,14 +43,22 @@ export const ContextWrapper = ({ children }) => {
     }
   };
 
-  // for edit data my training
-  const EditDataTraining = async (dataEdit, paramsId, id) => {
+  // for edit data training
+  const EditDataTraining = async (dataEdit, path, params, id) => {
     try {
-      var messages = 'Event successfully Update';
-      const response = await Axios.put(`users/${id}/trainings/${paramsId}`, dataEdit);
-      Notification(messages, 'success');
+      if (path === 'mytraining') {
+        var messages = 'Event successfully Update';
+        const response = await Axios.put(`users/${id}/trainings/${params}`, dataEdit);
+        console.log(21421, response);
+        Notification(messages, 'success');
+      }
+      if (path === 'training') {
+        var messages = 'Event successfully Update';
+        const response = await Axios.put(`users/trainings/${params}`, dataEdit);
+        Notification(messages, 'success');
+      }
     } catch (error) {
-      Notification(error.message, 'warn');
+      console.log('kok erorr get detail', error);
     }
   };
 

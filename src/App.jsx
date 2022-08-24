@@ -2,7 +2,7 @@ import { CreateEvent, Dashboard, DetailEvent, EditEvent, Login } from './Pages';
 import './App.css';
 import { BrowserRouter, Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
 import { Role, Token } from './Utils';
-
+import { Suspense } from 'react';
 const setToken = (userToken) => {
   sessionStorage.setItem('token', JSON.stringify(userToken));
 };
@@ -70,4 +70,10 @@ const App = () => {
   );
 };
 
-export default App;
+export default function WrappedApp() {
+  return (
+    <Suspense useSuspense={false} fallback="laoding">
+      <App />
+    </Suspense>
+  );
+}

@@ -3,7 +3,9 @@ import { Breadcrumb, Dropdown, Menu } from 'antd';
 import { useNavigate, Link, useLocation, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ButtonIcon from '../ButtonIcon';
+import { useTranslation } from 'react-i18next';
 const SectionHeader = ({ viewButton, user, editButton }) => {
+  const { t } = useTranslation(['dashboard']);
   const navigate = useNavigate();
   const params = useParams();
   const location = useLocation();
@@ -37,7 +39,7 @@ const SectionHeader = ({ viewButton, user, editButton }) => {
   });
   const breadcrumbItems = [
     <Breadcrumb.Item key={'/'}>
-      <Link to="/">Dashboard</Link>
+      <Link to="/">{t('dashboard:dashboard')}</Link>
     </Breadcrumb.Item>
   ].concat(extraBreadcrumbItems);
 
@@ -57,7 +59,7 @@ const SectionHeader = ({ viewButton, user, editButton }) => {
       onClick={handleLogout}
       items={[
         {
-          label: 'Logout',
+          label: `${t('common:logout')}`,
           key: '1'
         }
       ]}
@@ -69,7 +71,7 @@ const SectionHeader = ({ viewButton, user, editButton }) => {
       onClick={handleLogin}
       items={[
         {
-          label: 'Login',
+          label: `${t('common:login')}`,
           key: '1'
         }
       ]}
@@ -94,7 +96,7 @@ const SectionHeader = ({ viewButton, user, editButton }) => {
               (user?.role === 'admin' ? (
                 <>
                   <ButtonIcon
-                    textButton="Edit"
+                    textButton={t('dashboard:buttonEdit')}
                     style={{ borderRadius: 5, fontWeight: 'bold' }}
                     dataTestId="buttonEdit"
                     icon={<EditOutlined />}
@@ -116,7 +118,7 @@ const SectionHeader = ({ viewButton, user, editButton }) => {
                       type="primary"
                       style={{ borderRadius: 5, fontWeight: 'bold' }}
                       icon={<PlusOutlined />}
-                      textButton="Create Training Event"></ButtonIcon>
+                      textButton={t('dashboard:buttonCreate')}></ButtonIcon>
                   </>
                 ) : null}
                 <Dropdown.Button
@@ -131,7 +133,7 @@ const SectionHeader = ({ viewButton, user, editButton }) => {
                   trigger={['click']}
                   data-testid="buttonOverlay"
                   icon={<MoreOutlined />}>
-                  {user ? `Hi, ${user.username}` : 'More'}
+                  {user ? `${t('common:greeting')}, ${user.username}` : 'More'}
                 </Dropdown.Button>
               </>
             )}

@@ -4,13 +4,15 @@ import { Badge, Carousel, Col, Row, Empty } from 'antd';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import './index.css';
 import { UseCheckMobile } from '../../Utils';
+import { useTranslation } from 'react-i18next';
 const MyTrainingEventCard = ({ item }) => {
+  const { t } = useTranslation(['dashboard']);
   const mobile = UseCheckMobile();
   return (
     <div className="bg-card rounded-[10px] p-5 m-5">
       <div className="title-event">
         <p className="title">
-          My Training Event
+          {t('myTrainingEvent')}
           <Badge
             offset={20}
             style={{

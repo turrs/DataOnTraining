@@ -3,7 +3,10 @@ import './index.css';
 import { UnorderedListOutlined, AppstoreOutlined } from '@ant-design/icons';
 import { useContext, useCallback } from 'react';
 import { AppContext } from '../../Context';
+import { useTranslation } from 'react-i18next';
+
 const FilterTrainingEvent = () => {
+  const { t } = useTranslation(['dashboard']);
   const {
     view,
     setView,
@@ -42,8 +45,8 @@ const FilterTrainingEvent = () => {
       <div className="basis-1/4">
         <TextInput
           type="search"
-          label="Search Training"
-          placeholder="Search Training"
+          label={t('search.label')}
+          placeholder={t('search.placeholder')}
           style={{ width: 230, borderRadius: 5 }}
           onChange={(value) => debounceFunc(value.target.value)}
         />
@@ -64,11 +67,11 @@ const FilterTrainingEvent = () => {
       </div>
       <div className="basis-1/4 sm:flex sm:flex-row">
         <div className="switch">
-          <Toggle label="Related Job Only"></Toggle>
+          <Toggle label={t('related')}></Toggle>
         </div>
         <div className="wrapperButton">
           <ButtonIcon
-            textButton={view ? 'View All List' : 'View as Card'}
+            textButton={view ? t('buttonView.part2') : t('buttonView.part1')}
             style={{ borderRadius: 5, width: 200 }}
             icon={view ? <UnorderedListOutlined /> : <AppstoreOutlined />}
             onClick={view ? onClickAsList : onClickAsCard}
