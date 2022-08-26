@@ -3,7 +3,7 @@ import Notification from '../Notification';
 import PropTypes from 'prop-types';
 import { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { AppContext } from '../../Context';
+import { AppContext } from '../../context';
 import { useTranslation } from 'react-i18next';
 const FormLogin = ({ setToken }) => {
   const { t } = useTranslation(['login']);
