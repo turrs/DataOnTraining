@@ -4,7 +4,7 @@ import { EnvironmentOutlined, UserOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import 'antd/dist/antd.css';
-import { Axios } from '../../Utils';
+import { Axios } from '../../utils';
 import { useTranslation } from 'react-i18next';
 
 const { Text } = Typography;

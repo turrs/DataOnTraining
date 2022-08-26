@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Badge, Carousel, Col, Row, Empty } from 'antd';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import './index.css';
-import { UseCheckMobile } from '../../Utils';
+import { UseCheckMobile } from '../../utils';
 import { useTranslation } from 'react-i18next';
 const MyTrainingEventCard = ({ item }) => {
   const { t } = useTranslation(['dashboard']);

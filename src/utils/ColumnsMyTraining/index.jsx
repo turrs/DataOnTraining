@@ -1,5 +1,5 @@
 import { Rate } from 'antd';
-import { Link } from '../../Components';
+import { Link } from '../../components';
 
 import CoverDate from '../CoverDate';
 

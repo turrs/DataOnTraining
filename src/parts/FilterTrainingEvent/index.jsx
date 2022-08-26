@@ -2,7 +2,7 @@ import { ButtonIcon, SelectBox, Toggle, TextInput } from '../../Components';
 import './index.css';
 import { UnorderedListOutlined, AppstoreOutlined } from '@ant-design/icons';
 import { useContext, useCallback } from 'react';
-import { AppContext } from '../../Context';
+import { AppContext } from '../../context';
 import { useTranslation } from 'react-i18next';
 
 const FilterTrainingEvent = () => {

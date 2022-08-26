@@ -1,7 +1,7 @@
-import { CreateEvent, Dashboard, DetailEvent, EditEvent, Login } from './Pages';
+import { CreateEvent, Dashboard, DetailEvent, EditEvent, Login } from './pages';
 import './App.css';
 import { BrowserRouter, Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
-import { Role, Token } from './Utils';
+import { Role, Token } from './utils';
 import { Suspense } from 'react';
 const setToken = (userToken) => {
   sessionStorage.setItem('token', JSON.stringify(userToken));
