@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { SectionHeader } from '../../Components';
 import { AppContext } from '../../Context';
 import {
@@ -21,19 +21,26 @@ const Dashboard = () => {
     GetDataSelectEventStatus,
     eventType,
     eventStatus,
-    view
+    view,
+    pageMyTrainings,
+    pageAllTrainings
   } = useContext(AppContext);
   const id = JSON.parse(localStorage.getItem('id'));
   const user = JSON.parse(localStorage.getItem('user-info'));
+
   useEffect(() => {
-    GetDataSearching(valueInputSearching, id);
-  }, [valueInputSearching]);
-  useEffect(() => {
-    GetDataSelectEventType(eventType, id);
-  }, [eventType]);
-  useEffect(() => {
-    GetDataSelectEventStatus(eventStatus, id);
-  }, [eventStatus]);
+    if (valueInputSearching !== '') {
+      GetDataSearching(valueInputSearching, id, pageMyTrainings, pageAllTrainings);
+    } else if (eventType !== '') {
+      console.log('masuk type');
+      GetDataSelectEventType(eventType, id, pageMyTrainings, pageAllTrainings);
+    } else if (eventStatus !== '') {
+      GetDataSelectEventStatus(eventStatus, id, pageMyTrainings, pageAllTrainings);
+    } else {
+      GetDataSearching(valueInputSearching, id, pageMyTrainings, pageAllTrainings);
+    }
+  }, [valueInputSearching, eventStatus, eventType, pageMyTrainings, pageAllTrainings]);
+
   return (
     <div className="p-5">
       <SectionHeader viewButton user={user} />
@@ -47,7 +54,7 @@ const Dashboard = () => {
         />
       )}
       {view ? (
-        <AllTrainingEventCard item={DataAllTrainings} />
+        <AllTrainingEventCard item={DataAllTrainings}></AllTrainingEventCard>
       ) : (
         <AllTrainingEventTable
           dataTable={DataAllTrainings.data}

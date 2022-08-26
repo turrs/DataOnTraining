@@ -63,7 +63,7 @@ const FormLogin = ({ setToken }) => {
   };
 
   return (
-    <div>
+    <div className="max-w-[500px]">
       <div>
         <Text
           style={{
@@ -103,12 +103,14 @@ const FormLogin = ({ setToken }) => {
               message: `${t('username.messages.part3')}`
             }
           ]}>
-          <Input
-            style={{ width: 400 }}
-            placeholder={t('username.placeholder')}
-            data-testid="username"
-            onChange={(event) => setUsername(event.target.value)}
-          />
+          <div className="w-full">
+            <Input
+              style={{ width: '100%' }}
+              placeholder={t('username.placeholder')}
+              data-testid="username"
+              onChange={(event) => setUsername(event.target.value)}
+            />
+          </div>
         </Form.Item>
         <Form.Item
           style={{ fontWeight: 'bold' }}
@@ -124,12 +126,14 @@ const FormLogin = ({ setToken }) => {
               message: `${t('password.messages.part2')}`
             }
           ]}>
-          <Input.Password
-            style={{ width: 400 }}
-            placeholder={t('password.placeholder')}
-            data-testid="password"
-            onChange={(event) => setPassword(event.target.value)}
-          />
+          <div className="w-full">
+            <Input.Password
+              style={{ width: '100%' }}
+              placeholder={t('password.placeholder')}
+              data-testid="password"
+              onChange={(event) => setPassword(event.target.value)}
+            />
+          </div>
         </Form.Item>
         <Form.Item
           name="remember"

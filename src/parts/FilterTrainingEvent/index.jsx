@@ -25,8 +25,8 @@ const FilterTrainingEvent = () => {
   };
 
   const onChangeSearching = (value) => {
-    setEventStatus('');
     setEventType('');
+    setEventStatus('');
     setValueInputSearching(value);
   };
   const eventChange = (value) => {

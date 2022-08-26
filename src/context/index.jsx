@@ -69,40 +69,51 @@ export const ContextWrapper = ({ children }) => {
   // for filter event status
   const [eventType, setEventType] = useState('');
   // get data searching
-  const GetDataSearching = async (valueInputSearching, id) => {
+  // page training
+  const [pageMyTrainings, setPageMyTrainings] = useState(1);
+  const [pageAllTrainings, setPageAllTrainings] = useState(1);
+  const [totalDataMyTrainings, setTotalDataMyTrainings] = useState();
+  const [totalDataAllTrainings, setTotalDataAllTrainings] = useState();
+  const GetDataSearching = async (valueInputSearching, id, pageMyTrainings, pageAllTrainings) => {
     const endpoints = [
-      `/users/${id}/trainings?search=${valueInputSearching}/`,
-      `/trainings?search=${valueInputSearching}`
+      `/users/${id}/trainings?search=${valueInputSearching}&page${pageMyTrainings}&limit=10`,
+      `/trainings?search=${valueInputSearching}&page=${pageAllTrainings}&limit=10`
     ];
     await Promise.all(endpoints.map((endpoint) => Axios.get(endpoint))).then(
       ([{ data: dataUserTraining }, { data: dataAllTraining }]) => {
         setDataAllTrainings(dataAllTraining);
         setDataMyTraining(dataUserTraining);
+        setTotalDataMyTrainings(dataUserTraining._metadata.total_count);
+        setTotalDataAllTrainings(dataAllTraining._metadata.total_count);
       }
     );
   };
   // for filter select type event
-  const GetDataSelectEventType = async (eventType, id) => {
+  const GetDataSelectEventType = async (eventType, id, pageMyTrainings, pageAllTrainings) => {
     const endpoints = [
-      `/users/${id}/trainings?isOnlineClass=${eventType}`,
-      `/trainings?isOnlineClass=${eventType}`
+      `/users/${id}/trainings?isOnlineClass=${eventType}&page${pageMyTrainings}&limit=10`,
+      `/trainings?isOnlineClass=${eventType}&page=${pageAllTrainings}&limit=10`
     ];
     await Promise.all(endpoints.map((endpoint) => Axios.get(endpoint))).then(
       ([{ data: dataUserTraining }, { data: dataAllTraining }]) => {
         setDataAllTrainings(dataAllTraining);
         setDataMyTraining(dataUserTraining);
+        setTotalDataMyTrainings(dataUserTraining._metadata.total_count);
+        setTotalDataAllTrainings(dataAllTraining._metadata.total_count);
       }
     );
   };
-  const GetDataSelectEventStatus = async (eventStatus, id) => {
+  const GetDataSelectEventStatus = async (eventStatus, id, pageMyTrainings, pageAllTrainings) => {
     const endpoints = [
-      `/users/${id}/trainings?isComplete=${eventStatus}`,
-      `/trainings?isComplete=${eventStatus}`
+      `/users/${id}/trainings?isComplete=${eventStatus}&page${pageMyTrainings}&limit=10`,
+      `/trainings?isComplete=${eventStatus}&page=${pageAllTrainings}&limit=10`
     ];
     await Promise.all(endpoints.map((endpoint) => Axios.get(endpoint))).then(
       ([{ data: dataUserTraining }, { data: dataAllTraining }]) => {
         setDataAllTrainings(dataAllTraining);
         setDataMyTraining(dataUserTraining);
+        setTotalDataMyTrainings(dataUserTraining._metadata.total_count);
+        setTotalDataAllTrainings(dataAllTraining._metadata.total_count);
       }
     );
   };
@@ -199,7 +210,15 @@ export const ContextWrapper = ({ children }) => {
         setUserId,
         dataDetail,
         setDataDetail,
-        GetDetailDataTraining
+        GetDetailDataTraining,
+        pageMyTrainings,
+        setPageMyTrainings,
+        pageAllTrainings,
+        setPageAllTrainings,
+        totalDataMyTrainings,
+        setTotalDataMyTrainings,
+        totalDataAllTrainings,
+        setTotalDataAllTrainings
       }}>
       {children}
     </AppContext.Provider>
