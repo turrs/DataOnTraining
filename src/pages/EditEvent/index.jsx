@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import { SectionHeader } from '../../Components';
+import { SectionHeader } from '../../components';
 import { AppContext } from '../../context';
 import { FormTrainingEvent } from '../../parts';
 

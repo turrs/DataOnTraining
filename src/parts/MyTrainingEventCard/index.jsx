@@ -1,4 +1,4 @@
-import { MyTrainingCard } from '../../Components';
+import { MyTrainingCard } from '../../components';
 import PropTypes from 'prop-types';
 import { Badge, Carousel, Col, Row, Empty } from 'antd';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
