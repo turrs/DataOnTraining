@@ -75,11 +75,17 @@ export const ContextWrapper = ({ children }) => {
   const [totalDataMyTrainings, setTotalDataMyTrainings] = useState();
   const [totalDataAllTrainings, setTotalDataAllTrainings] = useState();
   const GetDataSearching = async (valueInputSearching, id, pageMyTrainings, pageAllTrainings) => {
+    const myTraining = await Axios.get(
+      `/users/${id}/trainings?search=${valueInputSearching}&page=${pageMyTrainings}&limit=10`
+    );
+    const allTraining = await Axios.get(
+      `/trainings?search=${valueInputSearching}&page=${pageAllTrainings}&limit=10`
+    );
     const endpoints = [
       `/users/${id}/trainings?search=${valueInputSearching}&page${pageMyTrainings}&limit=10`,
       `/trainings?search=${valueInputSearching}&page=${pageAllTrainings}&limit=10`
     ];
-    await Promise.all(endpoints.map((endpoint) => Axios.get(endpoint))).then(
+    await Promise.all([myTraining, allTraining]).then(
       ([{ data: dataUserTraining }, { data: dataAllTraining }]) => {
         setDataAllTrainings(dataAllTraining);
         setDataMyTraining(dataUserTraining);
