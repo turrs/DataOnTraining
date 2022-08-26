@@ -1,4 +1,4 @@
-import { SectionHeader } from '../../Components';
+import { SectionHeader } from '../../components';
 import { FormTrainingEvent } from '../../parts';
 
 const CreateEvent = () => {

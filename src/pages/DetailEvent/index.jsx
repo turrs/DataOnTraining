@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { useEffect, useContext } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import { ButtonIcon, SectionHeader } from '../../Components';
-import { AppContext } from '../../Context';
+import { ButtonIcon, SectionHeader } from '../../components';
+import { AppContext } from '../../context';
 import { Typography, Image, Avatar, Space, Card, Row, Col } from 'antd';
 import {
   CalendarOutlined,
@@ -11,7 +11,7 @@ import {
   UserOutlined,
   PlusOutlined
 } from '@ant-design/icons';
-import { UseCheckMobile } from '../../Utils';
+import { UseCheckMobile } from '../../utils';
 import { useTranslation } from 'react-i18next';
 const DetailEvent = () => {
   const { t } = useTranslation(['content']);

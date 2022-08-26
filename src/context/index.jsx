@@ -1,8 +1,8 @@
 import { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Axios, ColumnsAllTraining, ColumnsMyTraining, Role, Token } from '../Utils';
+import { Axios, ColumnsAllTraining, ColumnsMyTraining, Role, Token } from '../utils';
 // import { useNavigate, useLocation, useParams } from 'react-router-dom';
-import { Notification } from '../Components';
+import { Notification } from '../components';
 export const AppContext = createContext(null);
 
 export const ContextWrapper = ({ children }) => {

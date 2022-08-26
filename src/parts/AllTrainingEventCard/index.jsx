@@ -5,7 +5,7 @@ import { AllTrainingCard } from '../../Components';
 import { useTranslation } from 'react-i18next';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useState, useEffect, useContext } from 'react';
-import { AppContext } from '../../Context';
+import { AppContext } from '../../context';
 const AllTrainingEventCard = ({ value }) => {
   const { valueInputSearching } = useContext(AppContext);
   const { t } = useTranslation(['dashboard']);

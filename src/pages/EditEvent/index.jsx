@@ -1,7 +1,7 @@
 import { useEffect, useContext } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { SectionHeader } from '../../Components';
-import { AppContext } from '../../Context';
+import { AppContext } from '../../context';
 import { FormTrainingEvent } from '../../parts';
 
 const EditEvent = () => {

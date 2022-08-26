@@ -1,8 +1,8 @@
-import { LabelSection, TableData } from '../../Components';
+import { LabelSection, TableData } from '../../components';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { useContext } from 'react';
-import { AppContext } from '../../Context';
+import { AppContext } from '../../context';
 const AllTrainingEventTable = ({ dataTable, columns }) => {
   const { setPageAllTrainings, totalDataAllTrainings } = useContext(AppContext);
   const { t } = useTranslation(['dashboard']);
