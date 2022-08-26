@@ -14,7 +14,7 @@ const ColumnsAllTraining = [
     dataIndex: 'eventName',
     key: 'eventName',
     sorter: (a, b) => a.eventName.localeCompare(b.eventName),
-    render: (eventName, record) => <Link to={`/mytraining/${record.id}`}>{eventName}</Link>
+    render: (eventName, record) => <Link to={`/training/${record.id}`}>{eventName}</Link>
   },
   {
     title: 'Training Type',
