@@ -12,7 +12,7 @@ export const ContextWrapper = ({ children }) => {
   // const location = useLocation();
   // const params = useParams();
   // const [params]
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
   const [AllTrainingTableColumnContext] = useState(ColumnsAllTraining);
   const [MyTrainingTableColumnContext] = useState(ColumnsMyTraining);
   // for toggle switch view

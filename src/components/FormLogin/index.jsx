@@ -7,7 +7,7 @@ import { AppContext } from '../../Context';
 import { useTranslation } from 'react-i18next';
 const FormLogin = ({ setToken }) => {
   const { t } = useTranslation(['login']);
-  const { setUser, setUserId } = useContext(AppContext);
+
   const { Text } = Typography;
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -45,11 +45,8 @@ const FormLogin = ({ setToken }) => {
         localStorage.setItem('user-info', JSON.stringify(data.data));
         localStorage.setItem('role', JSON.stringify(data.data.role));
         localStorage.setItem('token', JSON.stringify(data.token));
-        localStorage.setItem('id', JSON.stringify(data.id));
-        const user = JSON.parse(localStorage.getItem('user-info'));
-        localStorage.setItem('id', JSON.stringify(user.id));
-        setUser(user);
-        setUserId(user.id);
+        localStorage.setItem('id', JSON.stringify(data.data.id));
+
         const messages = 'Login success';
         Notification(messages, 'success');
         navigate('/dashboard');
