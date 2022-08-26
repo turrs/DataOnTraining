@@ -1,7 +1,7 @@
 import { Badge, Col, Row, List } from 'antd';
 import './index.css';
 import PropTypes from 'prop-types';
-import { AllTrainingCard } from '../../Components';
+import { AllTrainingCard } from '../../components';
 import { useTranslation } from 'react-i18next';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useState, useEffect, useContext } from 'react';

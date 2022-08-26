@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { SectionHeader } from '../../Components';
+import { SectionHeader } from '../../components';
 import { AppContext } from '../../context';
 import {
   AllTrainingEventCard,

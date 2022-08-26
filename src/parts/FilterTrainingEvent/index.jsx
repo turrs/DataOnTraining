@@ -1,4 +1,4 @@
-import { ButtonIcon, SelectBox, Toggle, TextInput } from '../../Components';
+import { ButtonIcon, SelectBox, Toggle, TextInput } from '../../components';
 import './index.css';
 import { UnorderedListOutlined, AppstoreOutlined } from '@ant-design/icons';
 import { useContext, useCallback } from 'react';
