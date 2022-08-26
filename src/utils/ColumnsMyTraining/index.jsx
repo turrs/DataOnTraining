@@ -1,5 +1,5 @@
 import { Rate } from 'antd';
-import { Link } from '../../components';
+import { Link } from 'react-router-dom';
 
 import CoverDate from '../CoverDate';
 
@@ -9,7 +9,7 @@ const ColumnsMyTraining = [
     dataIndex: 'eventName',
     key: 'eventName',
     sorter: (a, b) => a.eventName.localeCompare(b.eventName),
-    render: (eventName) => <Link title={eventName}></Link>
+    render: (eventName, record) => <Link to={`/mytraining/${record.id}`}>{eventName}</Link>
   },
   {
     title: 'EventName',

@@ -1,16 +1,20 @@
 import { Rate } from 'antd';
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AppContext } from '../../context';
 import CoverDate from '../CoverDate';
 const ColumnsAllTraining = [
   {
     title: '#',
     key: 'index',
-    render: (text, record, index) => index + 1
+    render: (title, page, index) => index + 1
   },
   {
     title: 'EventName',
     dataIndex: 'eventName',
     key: 'eventName',
-    sorter: (a, b) => a.eventName.localeCompare(b.eventName)
+    sorter: (a, b) => a.eventName.localeCompare(b.eventName),
+    render: (eventName, record) => <Link to={`/mytraining/${record.id}`}>{eventName}</Link>
   },
   {
     title: 'Training Type',
